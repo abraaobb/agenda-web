@@ -16,4 +16,7 @@ export class ConfigService {
     create(contact: Contact): Observable<any> {
         return this.http.post(environment.apiUrl, contact);
     }
+    edit(id: string | number, contact: Contact) {
+        return this.http.put(`${environment.apiUrl}${id}/`, contact);
+    }
 }

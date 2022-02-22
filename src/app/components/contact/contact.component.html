@@ -1,7 +1,9 @@
 <h2>Criar um contato</h2>
 <form action="">
-    <p>Nome: <input type="text" name="name" [(ngModel)]="contact.name"></p>
-    <p>Telefone: <input type="text" name="phone" [(ngModel)]="contact.phone"></p>
+    <p>Nome: <input type="text" name="name" [(ngModel)]="contact.name" /></p>
+    <p>
+        Telefone: <input type="text" name="phone" [(ngModel)]="contact.phone" />
+    </p>
     <p><button (click)="createContact()">Criar</button></p>
 </form>
 <h2>Lista de Contatos</h2>
@@ -15,6 +17,7 @@
         <td>created at</td>
         <td>modified at</td>
         <td>is active</td>
+        <td>action</td>
     </tr>
     <tr *ngFor="let contact of contacts">
         <td>{{ contact.id }}</td>
@@ -24,5 +27,8 @@
         <td>{{ contact.created_at }}</td>
         <td>{{ contact.modified_at }}</td>
         <td>{{ contact.is_active }}</td>
+        <td>
+            <button (click)="editContact(contact.id)">Editar</button>
+        </td>
     </tr>
 </table>
