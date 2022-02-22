@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class ConfigService {
     constructor(private http: HttpClient) {}
 
-    list(): Observable<any> {
+    getAll(): Observable<any> {
         return this.http.get('http://localhost:8000/api/contact/');
     }
 }

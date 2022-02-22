@@ -18,13 +18,12 @@ export class ContactComponent implements OnInit {
     }
 
     listContacts() {
-        this.service.list().subscribe(
-            (contacts) => {
+        this.service.getAll().subscribe({
+            next: (contacts) => {
                 this.contacts = contacts['results'];
             },
-            (err) => {
-                console.error(err);
-            }
-        );
+            error: (e) => console.error(e),
+            complete: () => console.info('complete'),
+        });
     }
 }
