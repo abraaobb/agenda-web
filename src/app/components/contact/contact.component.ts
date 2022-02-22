@@ -26,4 +26,14 @@ export class ContactComponent implements OnInit {
             complete: () => console.info('complete'),
         });
     }
+    createContact() {
+        this.service.create(this.contact).subscribe({
+            next: () => {
+                this.contact = new Contact();
+                this.listContacts();
+            },
+            error: (e) => console.error(e),
+            complete: () => console.info('complete'),
+        });
+    }
 }

@@ -1,3 +1,9 @@
+<h2>Criar um contato</h2>
+<form action="">
+    <p>Nome: <input type="text" name="name" [(ngModel)]="contact.name"></p>
+    <p>Telefone: <input type="text" name="phone" [(ngModel)]="contact.phone"></p>
+    <p><button (click)="createContact()">Criar</button></p>
+</form>
 <h2>Lista de Contatos</h2>
 <hr />
 <table>

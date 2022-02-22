@@ -7,9 +7,10 @@ import { ContactComponent } from './components/contact/contact.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ConfigService } from './services/config.service';
+import { FormsModule } from '@angular/forms';
 @NgModule({
     declarations: [AppComponent, ContactComponent],
-    imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+    imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
     providers: [ConfigService, HttpClientModule],
     bootstrap: [AppComponent],
 })
