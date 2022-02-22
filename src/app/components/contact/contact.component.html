@@ -10,4 +10,13 @@
         <td>modified at</td>
         <td>is active</td>
     </tr>
+    <tr *ngFor="let contact of contacts">
+        <td>{{ contact.id }}</td>
+        <td>{{ contact.name }}</td>
+        <td>{{ contact.phone }}</td>
+        <td>{{ contact.category }}</td>
+        <td>{{ contact.created_at }}</td>
+        <td>{{ contact.modified_at }}</td>
+        <td>{{ contact.is_active }}</td>
+    </tr>
 </table>
