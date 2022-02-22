@@ -19,4 +19,7 @@ export class ConfigService {
     edit(id: string | number, contact: Contact) {
         return this.http.put(`${environment.apiUrl}${id}/`, contact);
     }
+    delete(id: string | number) {
+        return this.http.delete(`${environment.apiUrl}${id}/`);
+    }
 }

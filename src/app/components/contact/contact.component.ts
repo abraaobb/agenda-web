@@ -46,4 +46,14 @@ export class ContactComponent implements OnInit {
             complete: () => console.info('complete'),
         });
     }
+    deleteContact(id: any) {
+        this.service.delete(id).subscribe({
+            next: () => {
+                this.contact = new Contact();
+                this.listContacts();
+            },
+            error: (e) => console.error(e),
+            complete: () => console.info('complete'),
+        });
+    }
 }
