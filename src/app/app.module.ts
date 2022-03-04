@@ -10,9 +10,11 @@ import {ConfigService} from './services/config.service';
 import {FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from "./modules/material.module";
+import { CreateComponent } from './components/contact/create/create.component';
+import { UpdateComponent } from './components/contact/update/update.component';
 
 @NgModule({
-  declarations: [AppComponent, ContactComponent],
+  declarations: [AppComponent, ContactComponent, CreateComponent, UpdateComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, BrowserAnimationsModule, MaterialModule],
   providers: [ConfigService, HttpClientModule],
   bootstrap: [AppComponent],

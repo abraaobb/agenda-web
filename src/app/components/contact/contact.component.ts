@@ -1,59 +1,58 @@
-import { Component, OnInit } from '@angular/core';
-import { Contact } from 'src/app/models/contact';
-import { ConfigService } from 'src/app/services/config.service';
+import {Component, OnInit} from '@angular/core';
+import {Contact} from 'src/app/models/contact';
+import {ConfigService} from 'src/app/services/config.service';
+import {Router} from "@angular/router";
 
 @Component({
-    selector: 'app-contact',
-    templateUrl: './contact.component.html',
-    styleUrls: ['./contact.component.scss'],
+  selector: 'app-contact',
+  templateUrl: './contact.component.html',
+  styleUrls: ['./contact.component.scss'],
 })
 export class ContactComponent implements OnInit {
-    contact: Contact = new Contact();
-    contacts: Array<Contact> = new Array();
+  displayedColumns: string[] = ['id', 'name', 'phone', 'category', 'created_at', 'modified_at', 'is_active'];
+  contact: Contact = new Contact();
+  dataSource: Array<Contact> = new Array();
 
-    constructor(private service: ConfigService) {}
+  constructor(private service: ConfigService, private router: Router) {
+  }
 
-    ngOnInit(): void {
+  ngOnInit(): void {
+    this.listContacts();
+  }
+
+  listContacts() {
+    this.service.getAll().subscribe({
+      next: (contacts) => {
+        this.dataSource = contacts['results'];
+      },
+      error: (e) => console.error(e),
+      complete: () => console.info('complete'),
+    });
+  }
+
+  createContact() {
+    this.router.navigate(['/contact/create'])
+  }
+
+  editContact(id: any) {
+    this.service.edit(id, this.contact).subscribe({
+      next: () => {
+        this.contact = new Contact();
         this.listContacts();
-    }
+      },
+      error: (e) => console.error(e),
+      complete: () => console.info('complete'),
+    });
+  }
 
-    listContacts() {
-        this.service.getAll().subscribe({
-            next: (contacts) => {
-                this.contacts = contacts['results'];
-            },
-            error: (e) => console.error(e),
-            complete: () => console.info('complete'),
-        });
-    }
-    createContact() {
-        this.service.create(this.contact).subscribe({
-            next: () => {
-                this.contact = new Contact();
-                this.listContacts();
-            },
-            error: (e) => console.error(e),
-            complete: () => console.info('complete'),
-        });
-    }
-    editContact(id: any) {
-        this.service.edit(id, this.contact).subscribe({
-            next: () => {
-                this.contact = new Contact();
-                this.listContacts();
-            },
-            error: (e) => console.error(e),
-            complete: () => console.info('complete'),
-        });
-    }
-    deleteContact(id: any) {
-        this.service.delete(id).subscribe({
-            next: () => {
-                this.contact = new Contact();
-                this.listContacts();
-            },
-            error: (e) => console.error(e),
-            complete: () => console.info('complete'),
-        });
-    }
+  deleteContact(id: any) {
+    this.service.delete(id).subscribe({
+      next: () => {
+        this.contact = new Contact();
+        this.listContacts();
+      },
+      error: (e) => console.error(e),
+      complete: () => console.info('complete'),
+    });
+  }
 }
