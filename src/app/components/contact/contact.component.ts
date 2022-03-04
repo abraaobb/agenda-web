@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./contact.component.scss'],
 })
 export class ContactComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'phone', 'category', 'created_at', 'modified_at', 'is_active'];
+  displayedColumns: string[] = ['id', 'name', 'phone', 'category', 'created_at', 'modified_at', 'is_active', 'actions'];
   contact: Contact = new Contact();
   dataSource: Array<Contact> = new Array();
 
@@ -32,17 +32,6 @@ export class ContactComponent implements OnInit {
 
   createContact() {
     this.router.navigate(['/contact/create'])
-  }
-
-  editContact(id: any) {
-    this.service.edit(id, this.contact).subscribe({
-      next: () => {
-        this.contact = new Contact();
-        this.listContacts();
-      },
-      error: (e) => console.error(e),
-      complete: () => console.info('complete'),
-    });
   }
 
   deleteContact(id: any) {

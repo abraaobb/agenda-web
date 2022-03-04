@@ -1,1 +1,17 @@
-<p>update works!</p>
+<mat-card>
+  <mat-card-title>Update Contact</mat-card-title>
+  <form>
+    <mat-form-field>
+      <input matInput placeholder="Name" [(ngModel)]="contact.name" name="name">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Phone" [(ngModel)]="contact.phone" name="phone">
+    </mat-form-field>
+  </form>
+  <button mat-raised-button (click)="editContact()" color="primary">
+    Salvar
+  </button>
+  <button mat-raised-button (click)="cancel()">
+    Cancelar
+  </button>
+</mat-card>
